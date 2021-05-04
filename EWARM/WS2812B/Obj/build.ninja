@@ -1,0 +1,49 @@
+#Generating source browse information for project WS2812B
+
+
+#Abbreviations
+cc = D$:\Program$ Files$ (x86)\IAR$ Systems\Embedded$ Workbench$ 8.4\common\bin\SourceIndexer.exe
+ll = D$:\Program$ Files$ (x86)\IAR$ Systems\Embedded$ Workbench$ 8.4\common\bin\PbdLink.exe
+bd = D$:\Program$ Files$ (x86)\IAR$ Systems\Embedded$ Workbench$ 8.4\common\bin\makeBrowseData.exe
+
+
+
+#Rules
+rule index
+  depfile = $out.dep
+  command = $cc -out=$out -f $in
+rule link
+  command = $ll -M $out $in
+rule browsedata
+  command = $bd $in -output  $out
+
+
+
+#Build steps
+build system_stm32f1xx.pbi : index system_stm32f1xx.xcl
+build stm32f1xx_hal.pbi : index stm32f1xx_hal.xcl
+build stm32f1xx_hal_cortex.pbi : index stm32f1xx_hal_cortex.xcl
+build stm32f1xx_hal_dma.pbi : index stm32f1xx_hal_dma.xcl
+build stm32f1xx_hal_exti.pbi : index stm32f1xx_hal_exti.xcl
+build stm32f1xx_hal_flash.pbi : index stm32f1xx_hal_flash.xcl
+build stm32f1xx_hal_flash_ex.pbi : index stm32f1xx_hal_flash_ex.xcl
+build stm32f1xx_hal_gpio.pbi : index stm32f1xx_hal_gpio.xcl
+build stm32f1xx_hal_gpio_ex.pbi : index stm32f1xx_hal_gpio_ex.xcl
+build stm32f1xx_hal_pwr.pbi : index stm32f1xx_hal_pwr.xcl
+build stm32f1xx_hal_rcc.pbi : index stm32f1xx_hal_rcc.xcl
+build stm32f1xx_hal_rcc_ex.pbi : index stm32f1xx_hal_rcc_ex.xcl
+build stm32f1xx_hal_tim.pbi : index stm32f1xx_hal_tim.xcl
+build stm32f1xx_hal_tim_ex.pbi : index stm32f1xx_hal_tim_ex.xcl
+build main.pbi : index main.xcl
+build stm32f1xx_hal_msp.pbi : index stm32f1xx_hal_msp.xcl
+build stm32f1xx_it.pbi : index stm32f1xx_it.xcl
+build ws2812b.pbi : index ws2812b.xcl
+build WS2812B_part0.pbi : link system_stm32f1xx.pbi stm32f1xx_hal.pbi stm32f1xx_hal_cortex.pbi stm32f1xx_hal_dma.pbi
+build WS2812B_part1.pbi : link stm32f1xx_hal_exti.pbi stm32f1xx_hal_flash.pbi stm32f1xx_hal_flash_ex.pbi stm32f1xx_hal_gpio.pbi
+build WS2812B_part2.pbi : link stm32f1xx_hal_gpio_ex.pbi stm32f1xx_hal_pwr.pbi stm32f1xx_hal_rcc.pbi stm32f1xx_hal_rcc_ex.pbi
+build WS2812B_part3.pbi : link stm32f1xx_hal_tim.pbi stm32f1xx_hal_tim_ex.pbi main.pbi stm32f1xx_hal_msp.pbi
+build WS2812B_part4.pbi : link stm32f1xx_it.pbi ws2812b.pbi
+build WS2812B.pbd : link WS2812B_part0.pbi WS2812B_part1.pbi WS2812B_part2.pbi WS2812B_part3.pbi WS2812B_part4.pbi
+build WS2812B.pbw : browsedata WS2812B.pbd
+
+
