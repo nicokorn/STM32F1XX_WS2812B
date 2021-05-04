@@ -12,7 +12,7 @@ This 3 DMA transfer are triggered as following:
 First trigger is on each period. It set all gpios to high.
 Second trigger is on the first capture compare event on the 8th
 tick/pulse. The GPIOS are set accordingly if the bit for the
-ws2812b shall be a 1 or a 0. 
+ws2812b shall be a 1 or a 0 in the output buffer "WS2812_Buffer". 
 The third trigger is the second capture compare event an sets
 all gpio's always to 0 through a dma transfer. It doesn't matter
 if the pins are already set to 0 by the first capture compare
