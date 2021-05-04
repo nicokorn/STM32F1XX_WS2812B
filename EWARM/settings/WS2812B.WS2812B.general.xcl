@@ -2,7 +2,7 @@
 
 "D:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\arm\bin\armstlink2.dll" 
 
-"C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\WS2812B\Exe\WS2812B.out" 
+"D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Exe\WS2812B.out" 
 
 --plugin="D:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\arm\bin\armbat.dll" 
 

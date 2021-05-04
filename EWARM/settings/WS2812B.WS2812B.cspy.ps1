@@ -23,9 +23,9 @@
 
 if ($debugfile -eq "")
 {
-& "D:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\common\bin\cspybat" -f "C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\settings\WS2812B.WS2812B.general.xcl" --backend -f "C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\settings\WS2812B.WS2812B.driver.xcl" 
+& "D:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\common\bin\cspybat" -f "D:\GitHub\STM32F1XX_WS2812B\EWARM\settings\WS2812B.WS2812B.general.xcl" --backend -f "D:\GitHub\STM32F1XX_WS2812B\EWARM\settings\WS2812B.WS2812B.driver.xcl" 
 }
 else
 {
-& "D:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\common\bin\cspybat" -f "C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\settings\WS2812B.WS2812B.general.xcl" --debug_file=$debugfile --backend -f "C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\settings\WS2812B.WS2812B.driver.xcl" 
+& "D:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\common\bin\cspybat" -f "D:\GitHub\STM32F1XX_WS2812B\EWARM\settings\WS2812B.WS2812B.general.xcl" --debug_file=$debugfile --backend -f "D:\GitHub\STM32F1XX_WS2812B\EWARM\settings\WS2812B.WS2812B.driver.xcl" 
 }

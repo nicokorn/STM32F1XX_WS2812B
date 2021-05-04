@@ -1,41 +1,37 @@
 ###############################################################################
 #
-# IAR ELF Linker V8.50.1.245/W32 for ARM                  04/May/2021  18:39:06
+# IAR ELF Linker V8.50.1.245/W32 for ARM                  04/May/2021  19:03:31
 # Copyright 2007-2020 IAR Systems AB.
 #
-#    Output file  =
-#        C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\WS2812B\Exe\WS2812B.out
-#    Map file     =
-#        C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\WS2812B\List\WS2812B.map
+#    Output file  =  D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Exe\WS2812B.out
+#    Map file     =  D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\List\WS2812B.map
 #    Command line =
-#        -f C:\Users\nico1\AppData\Local\Temp\EW9597.tmp
-#        (C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\WS2812B\Obj\main.o
-#        C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\WS2812B\Obj\startup_stm32f103xb.o
-#        C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\WS2812B\Obj\stm32f1xx_hal.o
-#        C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\WS2812B\Obj\stm32f1xx_hal_cortex.o
-#        C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\WS2812B\Obj\stm32f1xx_hal_dma.o
-#        C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\WS2812B\Obj\stm32f1xx_hal_exti.o
-#        C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\WS2812B\Obj\stm32f1xx_hal_flash.o
-#        C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\WS2812B\Obj\stm32f1xx_hal_flash_ex.o
-#        C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\WS2812B\Obj\stm32f1xx_hal_gpio.o
-#        C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\WS2812B\Obj\stm32f1xx_hal_gpio_ex.o
-#        C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\WS2812B\Obj\stm32f1xx_hal_msp.o
-#        C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\WS2812B\Obj\stm32f1xx_hal_pwr.o
-#        C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\WS2812B\Obj\stm32f1xx_hal_rcc.o
-#        C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\WS2812B\Obj\stm32f1xx_hal_rcc_ex.o
-#        C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\WS2812B\Obj\stm32f1xx_hal_tim.o
-#        C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\WS2812B\Obj\stm32f1xx_hal_tim_ex.o
-#        C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\WS2812B\Obj\stm32f1xx_it.o
-#        C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\WS2812B\Obj\system_stm32f1xx.o
-#        C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\WS2812B\Obj\ws2812b.o
+#        -f C:\Users\nico1\AppData\Local\Temp\EWF287.tmp
+#        (D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\main.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\startup_stm32f103xb.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\stm32f1xx_hal.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\stm32f1xx_hal_cortex.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\stm32f1xx_hal_dma.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\stm32f1xx_hal_exti.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\stm32f1xx_hal_flash.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\stm32f1xx_hal_flash_ex.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\stm32f1xx_hal_gpio.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\stm32f1xx_hal_gpio_ex.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\stm32f1xx_hal_msp.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\stm32f1xx_hal_pwr.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\stm32f1xx_hal_rcc.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\stm32f1xx_hal_rcc_ex.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\stm32f1xx_hal_tim.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\stm32f1xx_hal_tim_ex.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\stm32f1xx_it.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\system_stm32f1xx.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\ws2812b.o
 #        --no_out_extension -o
-#        C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\WS2812B\Exe\WS2812B.out
-#        --redirect _Printf=_PrintfFullNoMb --redirect _Scanf=_ScanfFullNoMb
-#        --map
-#        C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\WS2812B\List\WS2812B.map
-#        --config
-#        C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM/stm32f103xb_flash.icf
-#        --semihosting --entry __iar_program_start --vfe --text_out locale)
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Exe\WS2812B.out --redirect
+#        _Printf=_PrintfFullNoMb --redirect _Scanf=_ScanfFullNoMb --map
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\List\WS2812B.map --config
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM/stm32f103xb_flash.icf --semihosting
+#        --entry __iar_program_start --vfe --text_out locale)
 #
 ###############################################################################
 
@@ -209,7 +205,7 @@ command line/config:
     -------------------------------------------------
     Total:
 
-C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\WS2812B\Obj: [1]
+D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj: [1]
     main.o                      258
     startup_stm32f103xb.o       416
     stm32f1xx_hal.o             168        2       12
@@ -363,7 +359,7 @@ uwTickFreq              0x2000'0000    0x1  Data  Gb  stm32f1xx_hal.o [1]
 uwTickPrio              0x2000'0008    0x4  Data  Gb  stm32f1xx_hal.o [1]
 
 
-[1] = C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\WS2812B\Obj
+[1] = D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj
 [2] = dl7M_tlf.a
 [3] = rt7M_tl.a
 [4] = shb_l.a
