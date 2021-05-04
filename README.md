@@ -31,7 +31,7 @@ streams/channels, otherwise it won't work.
 <h2>The ws2812b example</h2>
 <img src="https://github.com/nicokorn/STM32F1XX_WS2812B/blob/main/docs/20210504_182221.jpg" alt="st32f1xx_ws2812b1">
 <h2>WS2812B protocol timing and signal level</h2>
-<img src="https://github.com/nicokorn/STM32F1XX_WS2812B/blob/main/docs/WS2812B_Protocol_1.png" alt="st32f1xx_ws2812b2">
+<img src="https://github.com/nicokorn/STM32F1XX_WS2812B/blob/main/docs/WS2812B_Protocol_1.PNG" alt="st32f1xx_ws2812b2">
 <h2>Use of peripherals to meet timing and signal requirements</h2>
 <img src="https://github.com/nicokorn/STM32F1XX_WS2812B/blob/main/docs/WS2812B_Protocol_2.jpg" alt="st32f1xx_ws2812b3">
 
