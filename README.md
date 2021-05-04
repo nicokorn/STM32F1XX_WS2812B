@@ -9,7 +9,7 @@ This is why up to 16 stripes can be controlled in parallel.
 A Timer is used in which 3 DMA transfer are triggered used to 
 write data to the gpio's on which the stripes are connected to.
 This 3 DMA transfer are triggered as following:
-First trigger is on each period. It set all gpios to high.
+First trigger is on each period. It sets all gpios to high.
 Second trigger is on the first capture compare event on the 8th
 tick/pulse. The GPIOS are set accordingly if the bit for the
 ws2812b shall be a 1 or a 0 in the output buffer "WS2812_Buffer". 
