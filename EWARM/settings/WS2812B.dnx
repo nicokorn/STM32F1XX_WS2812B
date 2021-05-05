@@ -20,7 +20,7 @@
         <LeaveTargetRunning>_ 0</LeaveTargetRunning>
     </StLinkDriver>
     <DebugChecksum>
-        <Checksum>3677003382</Checksum>
+        <Checksum>1952181412</Checksum>
     </DebugChecksum>
     <Exceptions>
         <StopOnUncaught>_ 0</StopOnUncaught>
@@ -130,9 +130,11 @@
         <Count>0</Count>
     </Breakpoints2>
     <Aliases>
-        <A0>_ "C:\Users\nico1\Documents\Projekte\WS2812B\WS2812B\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_dma.c" "C:\Users\nico1\Documents\Projekte\WS2812B\ST\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_dma.c"</A0>
-        <A1>_ "C:\Users\nico1\Documents\Projekte\WS2812B\WS2812B\Src\stm32f1xx_it.c" "C:\Users\nico1\Documents\Projekte\WS2812B\ST\Src\stm32f1xx_it.c"</A1>
-        <Count>2</Count>
+        <A0>_ "C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\startup_stm32f103xb.s" "D:\GitHub\STM32F1XX_WS2812B\EWARM\startup_stm32f103xb.s"</A0>
+        <A1>_ "C:\Users\nico1\Documents\Projekte\WS2812B\ST\Src\stm32f1xx_it.c" "D:\GitHub\STM32F1XX_WS2812B\Src\stm32f1xx_it.c"</A1>
+        <A2>_ "C:\Users\nico1\Documents\Projekte\WS2812B\WS2812B\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_dma.c" "C:\Users\nico1\Documents\Projekte\WS2812B\ST\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_dma.c"</A2>
+        <A3>_ "C:\Users\nico1\Documents\Projekte\WS2812B\WS2812B\Src\stm32f1xx_it.c" "C:\Users\nico1\Documents\Projekte\WS2812B\ST\Src\stm32f1xx_it.c"</A3>
+        <Count>4</Count>
         <SuppressDialog>1</SuppressDialog>
     </Aliases>
 </settings>

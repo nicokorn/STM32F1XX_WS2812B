@@ -56,15 +56,16 @@
 // Exported types *************************************************************
 typedef enum
 {
- WS2812B_OK       = 0x00U,
- WS2812B_ERROR    = 0x01U,
- WS2812B_BUSY     = 0x02U,
- WS2812B_TIMEOUT  = 0x03U
+   WS2812B_OK       = 0x00U,
+   WS2812B_ERROR    = 0x01U,
+   WS2812B_BUSY     = 0x02U,
+   WS2812B_TIMEOUT  = 0x03U,
+   WS2812B_READY    = 0x04U,
+   WS2812B_RESET    = 0x05U
 } WS2812B_StatusTypeDef;
 
 // Exported functions *********************************************************
 WS2812B_StatusTypeDef   WS2812B_init            ( void );
-WS2812B_StatusTypeDef   WS2812B_isBusy          ( void );
 void                    WS2812B_sendBuffer      ( void );
 void                    WS2812B_clearBuffer     ( void );
 void                    WS2812B_setPixel        ( uint8_t row, uint16_t col, uint8_t red, uint8_t green, uint8_t blue );

@@ -47,10 +47,6 @@
 // Private define *************************************************************
 
 // Private types     **********************************************************
-/* this define sets the number of TIM2 overflows
- * to append to the data frame for the LEDs to
- * load the received data into their registers */
-#define WS2812_DEADPERIOD       ( 19u )
 /* WS2812 GPIO output buffer size */
 #define GPIO_BUFFERSIZE         COL*24u
 
@@ -58,7 +54,7 @@
 static const uint16_t                 WS2812_High  = 0xFFFF;
 static const uint16_t                 WS2812_Low   = 0x0000;
 static       uint16_t                 WS2812_Buffer[GPIO_BUFFERSIZE];      // COL * 24 bits (R(8bit), G(8bit), B(8bit)) = y --- output array transferred to GPIO output --- 1 array entry contents 16 bits parallel to GPIO outp
-static       FlagStatus               WS2812_TC = SET;	
+static       WS2812B_StatusTypeDef    WS2812_State = WS2812B_RESET;
 static       TIM_HandleTypeDef        TIM2_Handle;
 static       DMA_HandleTypeDef        DMA_HandleStruct_UEV;
 static       DMA_HandleTypeDef        DMA_HandleStruct_CC1;
@@ -87,23 +83,26 @@ WS2812B_StatusTypeDef WS2812B_init( void )
    // init peripherals
    if( init_gpio() != WS2812B_OK )
    {
-     return WS2812B_ERROR;
+     WS2812_State = WS2812B_ERROR;
+     return WS2812_State;
    }
    
    if( init_dma() != WS2812B_OK )
    {
-     return WS2812B_ERROR;
+     WS2812_State = WS2812B_ERROR;
+     return WS2812_State;
    }
    
    if( init_timer() != WS2812B_OK )
    {
-     return WS2812B_ERROR;
+     WS2812_State = WS2812B_ERROR;
+     return WS2812_State;
    }
    
-   // reset the send buffer complete flag
-   WS2812_TC = SET;
+   // set the ws2812b state flag to ready for operation
+   WS2812_State = WS2812B_READY;
    
-   return WS2812B_OK;
+   return WS2812_State;
 }
 
 // ----------------------------------------------------------------------------
@@ -177,14 +176,14 @@ static WS2812B_StatusTypeDef init_dma( void )
    
    // TIM2 Update event, High Output
    // DMA1 Channel2 configuration ----------------------------------------------
-   DMA_HandleStruct_UEV.Instance                        = DMA1_Channel2;
-   DMA_HandleStruct_UEV.Init.Direction 			= DMA_MEMORY_TO_PERIPH;
-   DMA_HandleStruct_UEV.Init.PeriphInc 			= DMA_PINC_DISABLE;
-   DMA_HandleStruct_UEV.Init.MemInc                     = DMA_MINC_DISABLE;
-   DMA_HandleStruct_UEV.Init.Mode                       = DMA_NORMAL;
-   DMA_HandleStruct_UEV.Init.PeriphDataAlignment 	= DMA_PDATAALIGN_HALFWORD;
+   DMA_HandleStruct_UEV.Instance                   = DMA1_Channel2;
+   DMA_HandleStruct_UEV.Init.Direction 			   = DMA_MEMORY_TO_PERIPH;
+   DMA_HandleStruct_UEV.Init.PeriphInc 			   = DMA_PINC_DISABLE;
+   DMA_HandleStruct_UEV.Init.MemInc                = DMA_MINC_DISABLE;
+   DMA_HandleStruct_UEV.Init.Mode                  = DMA_NORMAL;
+   DMA_HandleStruct_UEV.Init.PeriphDataAlignment   = DMA_PDATAALIGN_HALFWORD;
    DMA_HandleStruct_UEV.Init.MemDataAlignment 		= DMA_MDATAALIGN_HALFWORD;
-   DMA_HandleStruct_UEV.Init.Priority                   = DMA_PRIORITY_HIGH;
+   DMA_HandleStruct_UEV.Init.Priority              = DMA_PRIORITY_HIGH;
    if(HAL_DMA_Init(&DMA_HandleStruct_UEV) != HAL_OK)
    {
      return WS2812B_ERROR;
@@ -192,14 +191,14 @@ static WS2812B_StatusTypeDef init_dma( void )
   
    // TIM2 CC1 event, Dataframe Output, needs bit incrementation on memory
    // DMA1 Channel5 configuration ----------------------------------------------
-   DMA_HandleStruct_CC1.Instance                        = DMA1_Channel5;
-   DMA_HandleStruct_CC1.Init.Direction 			= DMA_MEMORY_TO_PERIPH;
-   DMA_HandleStruct_CC1.Init.PeriphInc 			= DMA_PINC_DISABLE;
-   DMA_HandleStruct_CC1.Init.MemInc                     = DMA_MINC_ENABLE;
-   DMA_HandleStruct_CC1.Init.Mode                       = DMA_NORMAL;
+   DMA_HandleStruct_CC1.Instance                   = DMA1_Channel5;
+   DMA_HandleStruct_CC1.Init.Direction 		      = DMA_MEMORY_TO_PERIPH;
+   DMA_HandleStruct_CC1.Init.PeriphInc 		      = DMA_PINC_DISABLE;
+   DMA_HandleStruct_CC1.Init.MemInc                = DMA_MINC_ENABLE;
+   DMA_HandleStruct_CC1.Init.Mode                  = DMA_NORMAL;
    DMA_HandleStruct_CC1.Init.PeriphDataAlignment 	= DMA_PDATAALIGN_HALFWORD;
    DMA_HandleStruct_CC1.Init.MemDataAlignment 		= DMA_MDATAALIGN_HALFWORD;
-   DMA_HandleStruct_CC1.Init.Priority                   = DMA_PRIORITY_HIGH;
+   DMA_HandleStruct_CC1.Init.Priority              = DMA_PRIORITY_HIGH;
    if(HAL_DMA_Init(&DMA_HandleStruct_CC1) != HAL_OK)
    {
      return WS2812B_ERROR;
@@ -207,14 +206,14 @@ static WS2812B_StatusTypeDef init_dma( void )
    
    // TIM2 CC2 event, Low Output
    // DMA1 Channel7 configuration ----------------------------------------------
-   DMA_HandleStruct_CC2.Instance                        = DMA1_Channel7;
-   DMA_HandleStruct_CC2.Init.Direction 			= DMA_MEMORY_TO_PERIPH;
-   DMA_HandleStruct_CC2.Init.PeriphInc 			= DMA_PINC_DISABLE;
-   DMA_HandleStruct_CC2.Init.MemInc                     = DMA_MINC_DISABLE;
-   DMA_HandleStruct_CC2.Init.Mode                       = DMA_NORMAL;
+   DMA_HandleStruct_CC2.Instance                   = DMA1_Channel7;
+   DMA_HandleStruct_CC2.Init.Direction 			   = DMA_MEMORY_TO_PERIPH;
+   DMA_HandleStruct_CC2.Init.PeriphInc 			   = DMA_PINC_DISABLE;
+   DMA_HandleStruct_CC2.Init.MemInc                = DMA_MINC_DISABLE;
+   DMA_HandleStruct_CC2.Init.Mode                  = DMA_NORMAL;
    DMA_HandleStruct_CC2.Init.PeriphDataAlignment 	= DMA_PDATAALIGN_HALFWORD;
    DMA_HandleStruct_CC2.Init.MemDataAlignment 		= DMA_MDATAALIGN_HALFWORD;
-   DMA_HandleStruct_CC2.Init.Priority                   = DMA_PRIORITY_HIGH;
+   DMA_HandleStruct_CC2.Init.Priority              = DMA_PRIORITY_HIGH;
    if(HAL_DMA_Init(&DMA_HandleStruct_CC2) != HAL_OK)
    {
      return WS2812B_ERROR;
@@ -261,10 +260,10 @@ static WS2812B_StatusTypeDef init_gpio( void )
 void WS2812B_sendBuffer( void )
 {
    // wait until last buffer transmission has been completed
-   while( WS2812_TC != SET );
+   while( WS2812_State != WS2812B_READY );
   
    // transmission complete flag, indicate that transmission is taking place
-   WS2812_TC = RESET;
+   WS2812_State = WS2812B_BUSY;
    
    // set period to 1.25 us with the auto reload register
    TIM2->ARR = 29u;
@@ -304,21 +303,6 @@ void WS2812B_sendBuffer( void )
    
    // start TIM2
    __HAL_TIM_ENABLE(&TIM2_Handle);
-}
-
-// ----------------------------------------------------------------------------
-/// \brief     Check if peripherals are sending data to the ws2812b leds.
-///
-/// \param     none
-///
-/// \return    WS2812B_StatusTypeDef
-WS2812B_StatusTypeDef WS2812B_isBusy( void )
-{   
-   if( WS2812_TC != SET )
-   {
-     return WS2812B_BUSY;
-   }
-   return WS2812B_OK;
 }
 
 // ----------------------------------------------------------------------------
@@ -363,7 +347,7 @@ static void WS2812_TIM2_callback( void )
    __HAL_TIM_DISABLE_IT(&TIM2_Handle, TIM_IT_UPDATE);
    
    // finally indicate that the data frame has been transmitted
-   WS2812_TC = SET;
+   WS2812_State = WS2812B_READY;
 }
 
 // ----------------------------------------------------------------------------
@@ -430,8 +414,9 @@ static void TransferComplete( DMA_HandleTypeDef *DmaHandle )
    TIM_CCxChannelCmd(TIM2, TIM_CHANNEL_1, TIM_CCx_DISABLE);
    TIM_CCxChannelCmd(TIM2, TIM_CHANNEL_2, TIM_CCx_DISABLE);
    
-   // enable TIM2 Update interrupt to append 50us dead/reset period
-   TIM2->ARR = 551u;
+   // enable TIM2 Update interrupt to append min. 50us dead/reset period
+   TIM2->ARR = 1500u; // 1 tick = 41.67ns => 1500 ticks = ~60us
+   TIM2->CNT = 0u;
    __HAL_TIM_ENABLE_IT(&TIM2_Handle, TIM_IT_UPDATE);
 }
 
@@ -458,7 +443,10 @@ static void TransferError( DMA_HandleTypeDef *DmaHandle )
 /// \return     none
 void WS2812B_clearBuffer( void )
 {
-   /* clear frame buffer */
+   // wait until last buffer transmission has been completed
+   while( WS2812_State != WS2812B_READY );
+  
+   // clear frame buffer
    for(uint8_t y=0; y<ROW;y++)
    {
       for(uint16_t x=0; x<COL; x++)
@@ -485,6 +473,9 @@ void WS2812B_setPixel( uint8_t row, uint16_t col, uint8_t red, uint8_t green, ui
    {
       return;
    }
+   
+   // wait until last buffer transmission has been completed
+   while( WS2812_State != WS2812B_READY );
    
    // write pixel into the buffer
    for( uint8_t i = 0; i < 8; i++ )
