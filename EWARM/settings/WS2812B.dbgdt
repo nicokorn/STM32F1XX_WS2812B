@@ -846,7 +846,7 @@
                 <expressions>
                     <item>WS2812_state == WS2812B_READY</item>
                     <item>i</item>
-                    <item></item>
+                    <item />
                 </expressions>
                 <col-names>
                     <item>Expression</item>
