@@ -48,12 +48,12 @@
 
 // Private types     **********************************************************
 /* WS2812 GPIO output buffer size */
-#define GPIO_BUFFERSIZE         COL*24u
+#define GPIO_BUFFERSIZE         ROW*COL*24u   // see ROW as LED stripe number and COL LED pixel number on the stripe
 
 // Private variables **********************************************************
 static const uint16_t                 WS2812_High  = 0xFFFF;
 static const uint16_t                 WS2812_Low   = 0x0000;
-static       uint16_t                 WS2812_Buffer[GPIO_BUFFERSIZE];      // COL * 24 bits (R(8bit), G(8bit), B(8bit)) = y --- output array transferred to GPIO output --- 1 array entry contents 16 bits parallel to GPIO outp
+static       uint16_t                 WS2812_Buffer[GPIO_BUFFERSIZE];      // ROW * COL * 24 bits (R(8bit), G(8bit), B(8bit)) = y --- output array transferred to GPIO output --- 1 array entry contents 16 bits parallel to GPIO outp
 static       WS2812B_StatusTypeDef    WS2812_State = WS2812B_RESET;
 static       TIM_HandleTypeDef        TIM2_Handle;
 static       DMA_HandleTypeDef        DMA_HandleStruct_UEV;
