@@ -245,7 +245,7 @@ static WS2812B_StatusTypeDef init_gpio( void )
    GPIO_InitStruct.Pin          = GPIO_PIN_0;           // if you want also to use pin 1, then write GPIO_PIN_0 | GPIO_PIN_1 => GPIO_PIN_1 would be the second led row
    GPIO_InitStruct.Mode         = GPIO_MODE_OUTPUT_PP;  // configure pins for pp output
    GPIO_InitStruct.Speed        = GPIO_SPEED_FREQ_HIGH; // 50 MHz rate
-   GPIO_InitStruct.Pull         = GPIO_NOPULL;          // this activates the pullup resistors on the IO pins
+   GPIO_InitStruct.Pull         = GPIO_NOPULL;          // disable pull
    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);              // setting GPIO registers
         
    return WS2812B_OK;
