@@ -137,7 +137,7 @@ static WS2812B_StatusTypeDef init_timer( void )
    // Timing Mode configuration: Capture Compare 1
    TIM_OC1Struct.OCMode                 = TIM_OCMODE_TIMING;
    TIM_OC1Struct.OCPolarity             = TIM_OCPOLARITY_HIGH;
-   TIM_OC1Struct.Pulse                  = 8;                    // 8 pulses => 8/29 => (8/29)*1250ns = 344.83 ns, ws2812b datasheet: 350 ns
+   TIM_OC1Struct.Pulse                  = 9;                    // 9 pulses => 9/30 => (8/30)*1250ns = 375 ns, ws2812b datasheet: 350 ns, DSO measured 348 ns
    
    // Configure the channel
    if( HAL_TIM_OC_ConfigChannel(&TIM2_Handle, &TIM_OC1Struct, TIM_CHANNEL_1) != HAL_OK )
